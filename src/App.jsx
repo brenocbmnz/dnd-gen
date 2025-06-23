@@ -1,34 +1,44 @@
 import React, { useState } from 'react';
 import { generateImage, generateBackstory } from './api/generatorService';
-import Header from './components/Header';
-import CharacterForm from './components/CharacterForm';
-import LoadingIndicator from './components/LoadingIndicator';
-import ErrorMessage from './components/ErrorMessage';
-import ResultsDisplay from './components/ResultsDisplay';
+
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import CharacterCreationPage from './pages/CharacterCreationPage';
+import QuickPromptPage from './pages/QuickPromptPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 export default function App() {
+    // State for navigation
+    const [currentPage, setCurrentPage] = useState('home');
+
+    // State for character creation
     const [characterImage, setCharacterImage] = useState('');
     const [characterBackstory, setCharacterBackstory] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Read API Key and Project ID from .env file
+    // Read API Key from .env file
     const API_KEY = import.meta.env.VITE_API_KEY;
-    const PROJECT_ID = import.meta.env.VITE_PROJECT_ID;
 
-    const handleGeneration = async ({ race, charClass, description }) => {
+    const handleGeneration = async ({ name, race, charClass, description, pronouns }) => {
+        if (!API_KEY) {
+            setError("Configuration error: API Key is missing. Check .env file.");
+            return;
+        }
+
         setIsLoading(true);
         setError(null);
         setCharacterImage('');
         setCharacterBackstory('');
 
         try {
-            const imagePrompt = `Epic fantasy character portrait of a ${race} ${charClass}. ${description}. Cinematic lighting, detailed, digital painting, artstation, concept art.`;
-            const backstoryPrompt = `Write a short, compelling Dungeons and Dragons backstory for the following character. Be creative. Character: A ${race} ${charClass} who ${description}.`;
+            const imagePrompt = `Epic fantasy character portrait of ${name}, a ${race} ${charClass}. ${description}. Cinematic lighting, detailed, digital painting, artstation, concept art.`;
+            const backstoryPrompt = `Write a short, compelling Dungeons and Dragons backstory for a character named ${name}. Their pronouns are ${pronouns}. Be creative and give them a unique motivation or a defining past event. The character is a ${race} ${charClass} who ${description}.`;
             
             const [imageResponse, backstoryResponse] = await Promise.all([
-                // Pass the Project ID to the image generation function
-                generateImage(imagePrompt, API_KEY, PROJECT_ID),
+                generateImage(imagePrompt, API_KEY),
                 generateBackstory(backstoryPrompt, API_KEY)
             ]);
 
@@ -44,21 +54,50 @@ export default function App() {
         }
     };
 
+    const renderPage = () => {
+      switch (currentPage) {
+        case 'character-creation':
+          return (
+            <CharacterCreationPage
+              handleGeneration={handleGeneration}
+              isLoading={isLoading}
+              error={error}
+              characterImage={characterImage}
+              characterBackstory={characterBackstory}
+            />
+          );
+        case 'quick-prompt':
+          return <QuickPromptPage />;
+        case 'about':
+          return <AboutPage />;
+        case 'contact':
+            return <ContactPage />;
+        case 'home':
+        default:
+          return <HomePage onNavClick={setCurrentPage} />;
+      }
+    };
+
     return (
-        <div className="bg-gray-900 text-gray-200 min-h-screen" style={{ fontFamily: 'Cinzel, serif' }}>
-            <div className="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
-                <Header />
-                <CharacterForm onGenerate={handleGeneration} isLoading={isLoading} />
-                
-                {isLoading && <LoadingIndicator />}
-                {error && <ErrorMessage message={error} />}
-                
-                {/* Only show results if not loading and there's something to show */}
-                {!isLoading && characterImage && characterBackstory && (
-                    <ResultsDisplay image={characterImage} backstory={characterBackstory} />
-                )}
-            </div>
+        <div data-theme="night" className="min-h-screen flex flex-col">
+            {/* Header is a full-width bar */}
+            <header className="bg-base-200 shadow-lg">
+              <div className="container mx-auto max-w-6xl">
+                <Navigation currentPage={currentPage} onNavClick={setCurrentPage} />
+              </div>
+            </header>
+
+            {/* Main content grows and has its own padding */}
+            <main className="flex-grow container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
+              {renderPage()}
+            </main>
+            
+            {/* Footer is a full-width bar */}
+            <footer className="bg-base-200">
+              <div className="container mx-auto max-w-6xl">
+                <Footer onNavClick={setCurrentPage} />
+              </div>
+            </footer>
         </div>
     );
 }
-

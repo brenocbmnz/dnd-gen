@@ -9,7 +9,9 @@
 ## 📄 Description
 D&D Forge is a front-end web application designed to assist Dungeons & Dragons players and Dungeon Masters. Using the power of the Google Gemini API, the tool generates character portraits and detailed backstories from user-provided prompts.
 This project was designed to be a creative and inspirational tool, demonstrating a modern integration between a reactive user interface and generative artificial intelligence services.
-✨ Features
+
+
+## ✨ Features
 Detailed Character Creation: A complete form to enter Name, Age, Race, Class, Pronouns, and a detailed description.
 AI Image Generation: Creates unique and stylized character portraits based on the form data.
 AI Backstory Generation: Crafts cohesive and creative backstories that incorporate all character details, including their pronouns.

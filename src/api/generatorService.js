@@ -1,4 +1,3 @@
-
 export const generateImage = async (prompt, apiKey) => {
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
     const payload = {
@@ -62,16 +61,35 @@ export const generateBackstory = async (prompt, apiKey) => {
     }
 };
 
-// Updated function with robust JSON parsing
+// Updated function with robust JSON parsing and improved variety
 export const generateQuickPrompt = async (apiKey) => {
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     
-    const prompt = `Generate a random Dungeons and Dragons character concept. Return the response as a single, valid JSON object only, with no other text or formatting. The JSON object must have these exact keys: "name", "age", "race", "charClass", "pronouns", and "description". For "pronouns", choose one of "he/him", "she/her", or "they/them".`;
+    const prompt = `Generate a completely unique and creative Dungeons and Dragons character concept. Be wildly imaginative and avoid common tropes. Consider unusual race/class combinations, unique backgrounds, and interesting personality quirks. 
+
+Examples of creative concepts:
+- A Dragonborn Bard who was raised by pixies and speaks only in rhymes
+- A Warforged Druid who believes they're actually a tree that gained consciousness
+- A Halfling Barbarian who gets angry when people assume they're a cook
+- A Tiefling Cleric who worships a god of lost socks and minor inconveniences
+
+Return ONLY a single, valid JSON object with these exact keys: "name", "age", "race", "charClass", "pronouns", and "description". 
+
+For "pronouns", randomly choose one of "he/him", "she/her", or "they/them".
+For "name", create something memorable and fitting for the character concept.
+For "race", feel free to use any official D&D race or interesting variants.
+For "charClass", use any official D&D class.
+For "description", include unique personality traits, unusual appearance details, quirky habits, or interesting backstory hints that make this character stand out.
+
+Be creative, unexpected, and fun!`;
 
     const payload = {
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {
-            temperature: 0.9 // Increase randomness for more varied results
+            temperature: 1.0, // Maximum creativity
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 500
         },
     };
 

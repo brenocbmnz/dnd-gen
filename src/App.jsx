@@ -12,7 +12,6 @@ import ContactPage from './pages/ContactPage';
 export default function App() {
     // State for navigation
     const [currentPage, setCurrentPage] = useState('home');
-    const [initialFormData, setInitialFormData] = useState(null);
 
     // State for character creation
     const [characterImage, setCharacterImage] = useState('');
@@ -55,11 +54,9 @@ export default function App() {
         }
     };
 
-    // This function takes the data from the quick prompt and immediately starts the full generation
+    // This function now only handles the generation without navigation
     const handleQuickCreateCharacter = (characterData) => {
-        setInitialFormData(characterData);
-        setCurrentPage('character-creation');
-        handleGeneration(characterData); // Immediately trigger the generation
+        handleGeneration(characterData);
     };
 
     const renderPage = () => {
@@ -72,11 +69,19 @@ export default function App() {
               error={error}
               characterImage={characterImage}
               characterBackstory={characterBackstory}
-              initialData={initialFormData}
             />
           );
         case 'quick-prompt':
-          return <QuickPromptPage apiKey={API_KEY} onGenerateFullCharacter={handleQuickCreateCharacter} />;
+          return (
+            <QuickPromptPage 
+              apiKey={API_KEY} 
+              onGenerateFullCharacter={handleQuickCreateCharacter}
+              isLoading={isLoading}
+              error={error}
+              characterImage={characterImage}
+              characterBackstory={characterBackstory}
+            />
+          );
         case 'about':
           return <AboutPage />;
         case 'contact':

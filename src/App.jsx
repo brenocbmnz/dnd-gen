@@ -59,6 +59,22 @@ export default function App() {
         handleGeneration(characterData);
     };
 
+    // Reset character generation state
+    const resetGenerationState = () => {
+        setCharacterImage('');
+        setCharacterBackstory('');
+        setIsLoading(false);
+        setError(null);
+    };
+
+    // Enhanced navigation function that clears state when switching pages
+    const handleNavigation = (page) => {
+        if (currentPage !== page) {
+            resetGenerationState();
+        }
+        setCurrentPage(page);
+    };
+
     const renderPage = () => {
       switch (currentPage) {
         case 'character-creation':
@@ -88,7 +104,7 @@ export default function App() {
             return <ContactPage />;
         case 'home':
         default:
-          return <HomePage onNavClick={setCurrentPage} />;
+          return <HomePage onNavClick={handleNavigation} />;
       }
     };
 
@@ -96,7 +112,7 @@ export default function App() {
         <div data-theme="night" className="min-h-screen flex flex-col">
             <header className="bg-base-200 shadow-lg">
               <div className="container mx-auto max-w-6xl">
-                <Navigation currentPage={currentPage} onNavClick={setCurrentPage} />
+                <Navigation currentPage={currentPage} onNavClick={handleNavigation} />
               </div>
             </header>
             <main className="flex-grow container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
@@ -104,7 +120,7 @@ export default function App() {
             </main>
             <footer className="bg-base-200">
               <div className="container mx-auto max-w-6xl">
-                <Footer onNavClick={setCurrentPage} />
+                <Footer onNavClick={handleNavigation} />
               </div>
             </footer>
         </div>

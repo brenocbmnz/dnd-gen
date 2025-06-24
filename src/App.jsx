@@ -22,7 +22,7 @@ export default function App() {
     // Read API Key from .env file
     const API_KEY = import.meta.env.VITE_API_KEY;
 
-    const handleGeneration = async ({ name, race, charClass, description, pronouns }) => {
+    const handleGeneration = async ({ name, age, race, charClass, description, pronouns }) => {
         if (!API_KEY) {
             setError("Configuration error: API Key is missing. Check .env file.");
             return;
@@ -34,8 +34,8 @@ export default function App() {
         setCharacterBackstory('');
 
         try {
-            const imagePrompt = `Epic fantasy character portrait of ${name}, a ${race} ${charClass}. ${description}. Cinematic lighting, detailed, digital painting, artstation, concept art.`;
-            const backstoryPrompt = `Write a short, compelling Dungeons and Dragons backstory for a character named ${name}. Their pronouns are ${pronouns}. Be creative and give them a unique motivation or a defining past event. The character is a ${race} ${charClass} who ${description}.`;
+            const imagePrompt = `Epic fantasy character portrait of ${name}, a ${age}-year-old ${race} ${charClass}. ${description}. Cinematic lighting, detailed, digital painting, artstation, concept art.`;
+            const backstoryPrompt = `Write a short, compelling Dungeons and Dragons backstory for a character named ${name}, who is ${age} years old. Their pronouns are ${pronouns}. Be creative and give them a unique motivation or a defining past event. The character is a ${race} ${charClass} who ${description}.`;
             
             const [imageResponse, backstoryResponse] = await Promise.all([
                 generateImage(imagePrompt, API_KEY),

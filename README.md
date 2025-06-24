@@ -1,12 +1,12 @@
-# React + Vite
+🎲 D&D Forge - AI Character Generator📄 DescriptionD&D Forge is a front-end web application designed to assist Dungeons & Dragons players and Dungeon Masters. Using the power of the Google Gemini API, the tool generates character portraits and detailed backstories from user-provided prompts.This project was designed to be a creative and inspirational tool, demonstrating a modern integration between a reactive user interface and generative artificial intelligence services.✨ FeaturesDetailed Character Creation: A complete form to enter Name, Age, Race, Class, Pronouns, and a detailed description.AI Image Generation: Creates unique and stylized character portraits based on the form data.AI Backstory Generation: Crafts cohesive and creative backstories that incorporate all character details, including their pronouns.Intuitive Navigation: A multi-page interface, including a home page, the character creation area, and "About" and "Contact" pages."Quick Prompt" Generator: A feature to instantly generate a character concept (name, race, class, etc.), which can be used to pre-fill the main form with a single click.Responsive Design: Interface built with Tailwind CSS and daisyUI, fully functional on mobile devices and desktops.🛠️ Technologies UsedFrontend:React: A library for building the user interface.Vite: A modern and extremely fast build tool for front-end development.Tailwind CSS: A utility-first CSS framework for rapid and responsive styling.daisyUI: A component library for Tailwind CSS that adds themes and pre-styled components.AI Services:Google Gemini API:Imagen Model: Used for generating character portraits.Gemini Flash Model: Used for generating backstories and "Quick Prompt" concepts.🚀 How to Run the ProjectTo run this project locally, you will only need one terminal, as it is a purely front-end application that consumes external APIs.PrerequisitesNode.js (version 16 or higher)npm or yarnAn API Key from Google AI Studio (the free tier is sufficient)1. Setting up the Project# Clone the repository
+git clone https://github.com/your-username/dnd-generator.git
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Navigate to the project folder
+cd dnd-generator
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Install the dependencies
+npm install
+2. Setting up Environment VariablesIn the root directory of the project, create a file named .env.Inside the .env file, add your API key from Google AI Studio. The variable name must start with VITE_.VITE_API_KEY="YOUR_SUPER_SECRET_API_KEY_HERE"
+3. Running the ApplicationAfter configuring the .env file, you can start the development server.# Start the React application with Vite
+npm run dev
+The application will be accessible at http://localhost:5173 (or the port that Vite indicates in your terminal).

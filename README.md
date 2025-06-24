@@ -1,4 +1,10 @@
 🎲 D&D Forge - AI Character Generator
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![daisyUI](https://img.shields.io/badge/daisyUI-1996f9?style=for-the-badge&logo=daisyui&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E77F7?style=for-the-badge&logo=google-gemini&logoColor=white)
+
 📄 Description
 D&D Forge is a front-end web application designed to assist Dungeons & Dragons players and Dungeon Masters. Using the power of the Google Gemini API, the tool generates character portraits and detailed backstories from user-provided prompts.
 This project was designed to be a creative and inspirational tool, demonstrating a modern integration between a reactive user interface and generative artificial intelligence services.

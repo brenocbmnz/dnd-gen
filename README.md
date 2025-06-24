@@ -12,12 +12,12 @@ This project was designed to be a creative and inspirational tool, demonstrating
 
 
 ## ✨ Features
-### Detailed Character Creation: A complete form to enter Name, Age, Race, Class, Pronouns, and a detailed description.
-### AI Image Generation: Creates unique and stylized character portraits based on the form data.
-### AI Backstory Generation: Crafts cohesive and creative backstories that incorporate all character details, including their pronouns.
-### Intuitive Navigation: A multi-page interface, including a home page, the character creation area, and "About" and "Contact" pages.
-### "Quick Prompt" Generator: A feature to instantly generate a character concept (name, race, class, etc.), which can then be used to generate a full character.
-### Responsive Design: Interface built with Tailwind CSS and daisyUI, fully functional on mobile devices and desktops.
+#### Detailed Character Creation: A complete form to enter Name, Age, Race, Class, Pronouns, and a detailed description.
+#### AI Image Generation: Creates unique and stylized character portraits based on the form data.
+#### AI Backstory Generation: Crafts cohesive and creative backstories that incorporate all character details, including their pronouns.
+#### Intuitive Navigation: A multi-page interface, including a home page, the character creation area, and "About" and "Contact" pages.
+#### "Quick Prompt" Generator: A feature to instantly generate a character concept (name, race, class, etc.), which can then be used to generate a full character.
+#### Responsive Design: Interface built with Tailwind CSS and daisyUI, fully functional on mobile devices and desktops.
 
 
 ## 🛠️ Technologies Used
